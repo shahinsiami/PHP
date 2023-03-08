@@ -1,51 +1,53 @@
 <?php
-class Car{
-    public $color = 'blue';
-    private $model = 'benz';
-    protected $year;
-    public function speed(){
-        return 'speed is good';
+
+  class Car {
+    public function __construct()
+    {
+        $this->license = 'standard';
     }
-    public function voulum(){
-        return 'voulum is compelete';
-    }
-    public function changeColor(){
-        $this->color = 'red';
-        $this->year = 2022 ;
-    }
+    private $license;
+    public $model;
+    public $color;
+    public $toal;
+
+  public function speed(){
+    echo 'speed is good';
+  }
+  public function turbo(){
+    echo 'turvo is on';
+  }
+  public function add ($speed_value){
+    $this->toal += $speed_value;
+    return $this;
+  }
+  public function sub ($speed_value){
+    $this->toal -= $speed_value;
+    return $this;
+  }
+  final public function echoLicense(){
+    echo $this->license;
+  }
+
 
 }
-class OtherCar extends Car{
-    
-    private $extra = $this->speed();
-    public $year = parent::$color ;
-    public $model = parent::$mode;
-    public function extraSpeed($extra){
-        return 'extra speed'.$extera.'and color is'.$this->color ;
-    }
-    public function setVoulum(){
-        parent::voulum();
+class newCar extends car{
+  public function childSpeed(){
+    $childCall = parent::speed();
+    echo `$childCall + child Object`;
+  }
+  const DATA_BASE = 'connection';
+  public function connect(){
+    echo 'connect to'.self::DATA_BASE;
+  }
 
 }
 
-$newcar = new Car();
-$newcar->color = 'blue';
-$newcar->speed();
-
-// cant use     $newcar->model;
-// cant use     $newcar->year;
-
-var_dump($car1);
-
-
-
-
+$benz = new car();
+$benz->color = 'red';
+var_dump($benz->color);
+$bmw = new newCar();
+var_dump($benz->speed());
+var_dump($benz->add(100)->sub(50));
+var_dump($benz->echoLicense());
+var_dump($bmw->childSpeed());
 ?>
-
-
-
-
-
-
-
-
